@@ -1,11 +1,8 @@
 package com.example.my_test.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.my_test.R;
 import com.example.my_test.dto.Todo;
@@ -18,26 +15,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+/*
         Todo todo = new Todo(1, "제목1");
-
-        Util.spPut("todo__1__id", todo.getId());
-        Util.spPut("todo__1__title", todo.getTitle());
+        Util.spPut("todo1", todo);
         Util.spCommit();
+*/
+        Todo todoResult = Util.spGetObj("todo1", Todo.class);
 
-        Todo todoFromSp = new Todo(Util.spGetInt("todo__1__id", 0), Util.spGetString("todo__1__title", ""));
+        //저장된 메세지가 없으면 아래 문장이 에러는 아니지만 문제를 발생 시킴
+        //그래서 먼저 spPut() 메소드를 통해 객체를 저장해야 됨.
+        Util.toast((String)todoResult.toString());
 
-        Util.toast("todoFromSp : " + todoFromSp.toString());
 
-        /*
-        Util.spPut("age", 11);
-        Util.spPut("isMarried", false);
-        Util.spCommit();
 
-        int age = Util.spGetInt("age",0);
-        boolean isMarried =Util.spGetBoolean("isMarried", false);
 
-        Util.toast("나이 : " + age + ", 결혼 여부 : " + isMarried);
-        */
     }
 }
