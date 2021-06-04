@@ -8,6 +8,9 @@ import com.example.my_test.R;
 import com.example.my_test.dto.Todo;
 import com.example.my_test.util.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,18 +18,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*
-        Todo todo = new Todo(1, "제목1");
-        Util.spPut("todo1", todo);
+        Todo todo1 = new Todo(1, "제목1");
+        Todo todo2 = new Todo(2, "제목2");
+
+        List<Todo> todos = new ArrayList<>();
+
+        todos.add(todo1);
+        todos.add(todo2);
+
+        Util.spPut("todos", todos);
         Util.spCommit();
-*/
-        Todo todoResult = Util.spGetObj("todo1", Todo.class);
 
-        //저장된 메세지가 없으면 아래 문장이 에러는 아니지만 문제를 발생 시킴
-        //그래서 먼저 spPut() 메소드를 통해 객체를 저장해야 됨.
-        Util.toast((String)todoResult.toString());
+        String jsonString = Util.spGetString("todos", "");
 
-
+        Util.log(jsonString);
 
 
     }
