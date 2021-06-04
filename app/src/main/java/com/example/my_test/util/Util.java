@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.my_test.dto.Todo;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -22,6 +23,7 @@ public class Util {
         Util.application = application;
 
         sp = PreferenceManager.getDefaultSharedPreferences(application);
+        //sp.edit(); 메소드를 통해 SharedPreferences에 저장하는 메소드 호출 가능
         spEditor = sp.edit();
 
     }
@@ -114,6 +116,23 @@ public class Util {
             return null;
         }
 
+    }
+
+    //매개변수를 TypeReference 객체를 통해 반환받기 때문에 TypeReference 타입으로 설정
+    public static <T> T spGetObj(String key, TypeReference<?> cls) {
+
+        String jsonString = spGetString(key, "");
+
+        ObjectMapper om = new ObjectMapper();
+
+        try {
+            return (T) om.readValue(jsonString, cls);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
 
     }
+
+
+
 }
