@@ -9,7 +9,6 @@ import com.example.my_test.dto.Todo;
 import com.example.my_test.util.Util;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         //<List<Todo> 같은 paramerized type의 타입을 반환 받기 위해 new TypeReference<List<Todo>>(){} 를 사용
         List<Todo> todos = Util.spGetObj("todos", new TypeReference<List<Todo>>(){});
 
+        //"todos.get(0).getId()"는 int 타입 이지만 "+ "번"" 적어주면 전제 문장이 String이 된다.
+        Util.log(todos.get(0).getId() + "번");
+        Util.log(todos.get(1).getId() + "번");
+        
         Util.log(todos.get(0).getTitle());
         Util.log(todos.get(1).getTitle());
 

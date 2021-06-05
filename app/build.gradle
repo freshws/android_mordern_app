@@ -53,4 +53,6 @@ dependencies {
     //스테토
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.facebook.stetho:stetho-js-rhino:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp:1.5.1'
+    implementation 'com.facebook.stetho:stetho-urlconnection:1.5.1'
 }
